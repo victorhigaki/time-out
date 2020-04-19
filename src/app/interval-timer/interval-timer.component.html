@@ -1,0 +1,63 @@
+<div class="text-center">
+  <div *ngIf="finish; else finishTemplate" class="">
+    <h1>Finish</h1>
+  </div>
+  <ng-template #finishTemplate>
+    <h1 class="">Round {{ currentRound }}</h1>
+    <h1 class="">
+      {{ roundForm.get("exercise").value }} {{ timeLeft | number: "1" }}
+    </h1>
+  </ng-template>
+
+  <form [formGroup]="roundForm" (ngSubmit)="onStart()">
+    <div class="form-row">
+      <div class="col-auto">
+        <button type="submit" class="btn btn-success">
+          Start
+        </button>
+      </div>
+      <div class="col-auto">
+        <button (click)="onCancel()" type="button" class="btn btn-secondary">
+          Cancel
+        </button>
+      </div>
+    </div>
+    <div class="row"></div>
+    <div class="form-row">
+      <div class="col-1">
+        <input
+          formControlName="rounds"
+          type="text"
+          class="form-control"
+          placeholder="Rounds"
+        />
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-4">
+        <input
+          formControlName="exercise"
+          type="text"
+          class="form-control"
+          placeholder="Exercise"
+        />
+      </div>
+      <div class="form-group col-2">
+        <input
+          formControlName="seconds"
+          placeholder="Seconds"
+          type="number"
+          class="form-control"
+        />
+      </div>
+
+      <div class="col-auto">
+        <button type="button" class="btn btn-primary">+</button>
+      </div>
+      <div class="col-auto">
+        <button type="button" class="btn btn-danger">-</button>
+      </div>
+    </div>
+  </form>
+</div>
